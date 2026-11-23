@@ -1,0 +1,12 @@
+Server:		10.77.1.10
+Address:	10.77.1.10#53
+
+Name:	web.project10.test
+Address: 10.77.1.20
+
+<!doctype html>
+<html>
+  <head><title>Project 10 DNS Lab</title></head>
+  <body><h1>Project 10 web server</h1><p>Internal DNS lookup succeeded.</p></body>
+</html>
+
