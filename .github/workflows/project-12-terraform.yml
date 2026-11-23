@@ -1,0 +1,48 @@
+name: Project 12 Terraform Plan
+
+on:
+  push:
+    paths:
+      - "Project_12/**"
+      - ".github/workflows/project-12-terraform.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      - name: Check formatting
+        run: terraform -chdir=Project_12 fmt -check
+
+      - name: Initialize Terraform
+        run: terraform -chdir=Project_12 init -backend=false
+
+      - name: Validate Terraform
+        run: terraform -chdir=Project_12 validate
+
+      - name: Create plan
+        run: terraform -chdir=Project_12 plan -out=tfplan
+
+      - name: Render plan
+        run: terraform -chdir=Project_12 show -no-color tfplan > Project_12/tfplan.txt
+
+      - name: Upload plan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-12-terraform-plan
+          path: |
+            Project_12/tfplan
+            Project_12/tfplan.txt
+          if-no-files-found: error
