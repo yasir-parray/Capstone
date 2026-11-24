@@ -4,3 +4,6 @@
 crash.log
 crash.*.log
 *.tfvars
+crash.log
+kubeconfig
+*.tfplan
