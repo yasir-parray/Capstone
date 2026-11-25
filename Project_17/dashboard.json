@@ -1,0 +1,44 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Project 17 - Incoming Log Events",
+        "region": "ap-south-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Sum",
+        "metrics": [
+          [
+            "AWS/Logs",
+            "IncomingLogEvents",
+            "LogGroupName",
+            "yasir-project-17-logs"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Project 17 - Incoming Log Bytes",
+        "region": "ap-south-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Sum",
+        "metrics": [
+          [
+            "AWS/Logs",
+            "IncomingBytes",
+            "LogGroupName",
+            "yasir-project-17-logs"
+          ]
+        ]
+      }
+    }
+  ]
+}
