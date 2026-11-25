@@ -7,3 +7,11 @@ crash.*.log
 crash.log
 kubeconfig
 *.tfplan
+# Private keys
+*.key
+
+# Optional certificate files
+*.crt
+
+# Notes / temporary files
+resource_ids.txt
