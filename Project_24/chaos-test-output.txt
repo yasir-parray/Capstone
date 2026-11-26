@@ -1,0 +1,31 @@
+=== 1. Baseline Health Check ===
+Timestamp (UTC): 2026-11-26T05:19:38Z
+Attempt 1: HTTP_STATUS=200
+<h1>Project 24 Chaos Target - Healthy (yasir-p24)</h1>
+
+=== 2. Wait for SSM Agent Registration ===
+Poll 1: SSM PingStatus=Online
+
+=== 3. Chaos Injection: Stop httpd Service ===
+Stop Initiated (UTC): 2026-11-26T05:19:40Z
+inactive
+	Success
+--- Verify Service Failure from External Probe ---
+
+=== 4. Recovery Action: Restart httpd Service ===
+Restart Initiated (UTC): 2026-11-26T05:19:50Z
+active
+	Success
+--- Verify Service Recovery ---
+HTTP/1.1 200 OK
+Date: Thu, 26 Nov 2026 05:19:55 GMT
+Server: Apache/2.4.71 (Amazon Linux)
+Last-Modified: Thu, 26 Nov 2026 05:14:52 GMT
+ETag: "37-6612705ff654f"
+Accept-Ranges: bytes
+Content-Length: 55
+Content-Type: text/html; charset=UTF-8
+
+<h1>Project 24 Chaos Target - Healthy (yasir-p24)</h1>
+Recovered Verified (UTC): 2026-11-26T05:19:55Z
+Elapsed Window (stop to verified recovery): 15s
