@@ -1,0 +1,52 @@
+=== 1. Verify IAM Instance Profile Attached to EC2 ===
+-----------------------------------------------------------------------------------------------
+|                                      DescribeInstances                                      |
++--------------------+------------------------------------------------------------------------+
+|  IamInstanceProfile|  arn:aws:iam::590507089733:instance-profile/yasir-p23-ec2-s3-profile   |
+|  InstanceId        |  i-0f0dc510d9235366a                                                   |
+|  State             |  running                                                               |
++--------------------+------------------------------------------------------------------------+
+
+=== 2. Verify IAM Role & Inline Scoped S3 Policy ===
+{
+    "RoleName": "yasir-p23-ec2-s3-role",
+    "PolicyName": "yasir-p23-s3-scoped-policy",
+    "PolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:ListBucket"
+                ],
+                "Resource": "arn:aws:s3:::yasir-p23-demo-590507089733"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject"
+                ],
+                "Resource": "arn:aws:s3:::yasir-p23-demo-590507089733/*"
+            }
+        ]
+    }
+}
+
+=== 3. Verify Bucket & Object Permissions via IAM Policy Simulator ===
+---------------------------------------------------------------------------
+|                         SimulatePrincipalPolicy                         |
++---------------+-----------+---------------------------------------------+
+|    Action     | Decision  |                  Resource                   |
++---------------+-----------+---------------------------------------------+
+|  s3:ListBucket|  allowed  |  arn:aws:s3:::yasir-p23-demo-590507089733   |
++---------------+-----------+---------------------------------------------+
+------------------------------------------------------------------------------------------------
+|                                    SimulatePrincipalPolicy                                   |
++-----------------+---------------+------------------------------------------------------------+
+|     Action      |   Decision    |                         Resource                           |
++-----------------+---------------+------------------------------------------------------------+
+|  s3:GetObject   |  allowed      |  arn:aws:s3:::yasir-p23-demo-590507089733/sample-p23.txt   |
+|  s3:PutObject   |  allowed      |  arn:aws:s3:::yasir-p23-demo-590507089733/sample-p23.txt   |
+|  s3:DeleteObject|  implicitDeny |  arn:aws:s3:::yasir-p23-demo-590507089733/sample-p23.txt   |
++-----------------+---------------+------------------------------------------------------------+
