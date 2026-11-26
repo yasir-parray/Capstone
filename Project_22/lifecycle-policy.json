@@ -1,0 +1,14 @@
+{
+  "Rules": [
+    {
+      "ID": "yasir-p22-expire-logs-30d",
+      "Filter": {
+        "Prefix": "logs/"
+      },
+      "Status": "Enabled",
+      "Expiration": {
+        "Days": 30
+      }
+    }
+  ]
+}
